@@ -4,6 +4,7 @@ from flask import Flask, request
 # create app
 app = Flask(__name__)
 
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
