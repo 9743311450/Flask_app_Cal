@@ -1,20 +1,26 @@
-# function to add two numbers 
+#!/usr/bin/env python
+from flask import Flask, request
 
-def addTwoNums(n1, n2): 
-  return n1 + n2
+# create app
+app = Flask(_name_)
 
-# taking input of numbers from user
 
-valueone = input('Enter a number: \n')
-valuetwo = input('Enter second number: \n')
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'GET':
+        # show html form
+        return '''
+            <form method="post">
+                <input type="text" name="expression" />
+                <input type="submit" value="Calculate" />
+            </form>
+        '''
+    elif request.method == 'POST':
+        # calculate result
+        expression = request.form.get('expression')
+        result = eval(expression)
+        return 'result: %s' % result
 
-# Calculation
-
-valueone = int(valueone)
-valuetwo = int(valuetwo)
-
-# printing
-
-print(addTwoNums(valueone, valuetwo))
-
-# End of program
+# run app
+if _name_ == '_main_':
+    app.run(debug=True)
